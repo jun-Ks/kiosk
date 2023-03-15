@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springboot.kiosk.mapper.IFoodMapper">
+	<!-- 음식등록 -->
+	<insert id="insertFood">
+		INSERT INTO kiosk.food_tbl
+		(name, price, category, inventory, img)
+		VALUES (#{name}, #{price}, #{category}, #{inventory}, NULL);
+	</insert>
+	
+	<!-- 카테고리로 음식조회 -->
+	<select id="foodListByCategory" resultType="FoodDTO">
+		SELECT *
+		FROM kiosk.food_tbl
+		WHERE category = #{param1};
+	</select>
+	
+	<!-- 카테고리로 음식조회 -->
+	<select id="foodListByCode" resultType="FoodDTO">
+		SELECT *
+		FROM kiosk.food_tbl
+		WHERE foodCode = #{param1};
+	</select>
+</mapper>

@@ -15,7 +15,7 @@ import com.springboot.kiosk.service.IFoodService;
 
 @RestController
 @RequestMapping("/user")
-public class GetController {
+public class UserGetController {
 	
 	@Autowired
 	IFoodService fService;

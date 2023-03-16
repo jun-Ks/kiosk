@@ -52,15 +52,25 @@
 	</tbody>
 </table>
 <hr>
-<table border="1" id="order_tbl" style="display: block">
-	<tr>
-		<th>수량</th>
-		<th>총 가격</th>
-	</tr>
-	<tr>
-		<th><input type='text' id='totalCnt'></th>
-	</tr>
-</table>
+<form action="/user/order" method="post">
+	<table border="1" id="order_tbl" style="display: block">
+		<thead>
+			<tr>
+				<th>수량</th>
+				<th>총 가격</th>
+			</tr>
+		</thead>
+		<tbody id="order_tbl_tbody">
+			<tr>
+				<th><input type="text" name="totalCnt" id="totalCnt"></th>
+				<th><input type="text" name="totalPrice" id="totalPrice"></th>
+			</tr>
+		</tbody>
+		<tr>
+			<th colspan="2"><input type="submit" value="주문하기"></th>
+		</tr>
+	</table>
+</form>
 	<script>
 		//메뉴 페이지 로딩시 인기메뉴 출력
 		$(document).ready(function(){
@@ -159,7 +169,14 @@
 		//담기버튼 누르면?
 		$("#menu_tbl_tbody").on("click", "#addCart", function(e){
 			let foodCode = $(e.target).val();
+			let foodCodes = document.querySelectorAll("#foodCode");
 			
+			for(let i = 0; i < foodCodes.length; i++){
+				if(foodCode == foodCodes[i].value){
+					alert("이미 담은 음식입니다. \n 수량을 조절하시려면 아래 수량 칸을 조절해주세요.")					
+					return false;
+				}
+			}
 			const xhttp = new XMLHttpRequest();
 			xhttp.onload = function() {
 				let result = this.responseText;
@@ -178,13 +195,18 @@
 								"<button id='plus'> + </button>"+
 							"</td>"+
 							"<td>"+
-								food.price+
+								"<input type='hidden' id='realPrice' value='"+food.price+"'>"+
+								"<input type='text' id='price' value='"+food.price+"' readonly>"+
 							"</td>"+
 							"<td>"+
 								"<button id='del_cart'>삭제</button>"+
 							"</td>"+
 						"</tr>"
 						);
+				
+				
+				//담기 누를때마다 푸드코드 생성
+				$("#order_tbl_tbody").append("<input type='hidden' name='foodCode' value='"+food.foodCode+"'>");
 				getCnt();
 			}
 					
@@ -196,30 +218,42 @@
 		});
 		
 		//담기창에서 +, - 수량
-		$("#cart_tbl_tbody").on("click", "#cntBox", function(e){
+		$("#cart_tbl_tbody").on("click", "#cntBox", controllMinus);
+		$("#cart_tbl_tbody").on("click", "#cntBox", cotrollPlus);
+		function controllMinus(e){
 			
 			if(e.target.id == "minus"){
 				let cnt = $(e.target).next().val();
 				let result = parseInt(cnt) - 1;
+				let price = e.target.parentElement.parentElement.children[3].children[1];
+				let realPrice = parseInt(e.target.parentElement.parentElement.children[3].children[0].value);
 				
 				$(e.target).next().val(result);
 				
 				if(cnt == 1){
 					$(e.target).next().val(1);
 				}
+				
+				price.value = parseInt($(e.target).next().val()) * realPrice;
+				
 			}
-			
+		};
+		function cotrollPlus(e){
 			if(e.target.id == "plus"){
 				let cnt = $(e.target).prev().val();
 				let result = parseInt(cnt) + 1;
 				let plus_cnt = $(e.target).prev().val(result);
+				let price = e.target.parentElement.parentElement.children[3].children[1];
+				let realPrice = parseInt(e.target.parentElement.parentElement.children[3].children[0].value);
 				
 				if(cnt == 10){
 					alert("최대 10개까지 추가 가능합니다.");
 					$(e.target).prev().val(10);
 				}
+				
+				price.value = parseInt($(e.target).prev().val()) * realPrice;
 			}
-		});
+		};
 		
 		//삭제
 		$("#cart_tbl_tbody").on("click", "#del_cart", function(e){
@@ -231,16 +265,42 @@
 		$(document).on("click", "#addCart, #plus, #minus", getCnt);
 		function getCnt(){
 			let cnts = document.querySelectorAll("#cnt");
+			let prices = document.querySelectorAll("#price");
 			let cnt_val = 0;
+			let price_val = 0;
 			for(let i = 0; i < cnts.length; i++){
 				cnt_val += parseInt(cnts[i].value);
 				$("#totalCnt").val(cnt_val);
+				
+				price_val += parseInt(prices[i].value);
+				$("#totalPrice").val(price_val);
 			};
 			if(cnts.length == 0){
 				$("#totalCnt").val(0);
 			}
+			if(prices.length == 0){
+				$("#totalPrice").val(0);
+			}
 		};
 		
+		/* $("#order_btn").on("click", function(){
+			let totalPrice = $("#totalPrice").val();
+			let totalCnt = $("#totalCnt").val();
+			let _foodCodes = document.querySelectorAll("#foodCode");
+			let foodCode = new Array();
+			for(let i = 0; i < _foodCodes.length; i++){
+				foodCode.push(_foodCodes[i].value)
+			}
+			alert(foodCode);
+			const xhttp = new XMLHttpRequest();
+			xhttp.onload = function() {
+				let result = this.responseText; 
+
+			}
+			xhttp.open("POST", "#");
+			xhttp.setRequestHeader("Content-type", "application/json");
+			xhttp.send("totalPrice="+totalPrice+"&totalCnt="+totalCnt);
+		}); */
 	</script>
 </body>
 </html>

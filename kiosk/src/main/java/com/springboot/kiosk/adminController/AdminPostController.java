@@ -10,7 +10,7 @@ import com.springboot.kiosk.service.IFoodService;
 
 @RestController
 @RequestMapping("/admin")
-public class PostController {
+public class AdminPostController {
 	
 	@Autowired
 	IFoodService fService;

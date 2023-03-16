@@ -41,7 +41,7 @@
 	</tbody>
 </table>
 <hr>
-<table border="1">
+<table border="1" id="cart_tbl">
 	<tr>
 		<th>음식코드</th>
 		<th>담은 음식</th>
@@ -52,10 +52,13 @@
 	</tbody>
 </table>
 <hr>
-<table border="1" id="order_tbl" style="display: none">
+<table border="1" id="order_tbl" style="display: block">
 	<tr>
 		<th>수량</th>
 		<th>총 가격</th>
+	</tr>
+	<tr>
+		<th><input type='text' id='totalCnt'></th>
 	</tr>
 </table>
 	<script>
@@ -182,15 +185,7 @@
 							"</td>"+
 						"</tr>"
 						);
-				
-				//주문테이블
-				$("#order_tbl").show();
-				$("#order_tbl").html(
-						"<tr>"+
-							"<td>"+
-							"<input type='text' id='totalCnt' value='"+$("#cnt").val()+"'>"+
-							"</td>"+
-						"</tr>");
+				getCnt();
 			}
 					
 			xhttp.open("GET", "/user/cart/"+foodCode, true); 
@@ -229,8 +224,22 @@
 		//삭제
 		$("#cart_tbl_tbody").on("click", "#del_cart", function(e){
 			$(e.target).parent().parent().remove();
+			getCnt();
 		});
 		
+		//cnt 수량 구하기
+		$(document).on("click", "#addCart, #plus, #minus", getCnt);
+		function getCnt(){
+			let cnts = document.querySelectorAll("#cnt");
+			let cnt_val = 0;
+			for(let i = 0; i < cnts.length; i++){
+				cnt_val += parseInt(cnts[i].value);
+				$("#totalCnt").val(cnt_val);
+			};
+			if(cnts.length == 0){
+				$("#totalCnt").val(0);
+			}
+		};
 		
 	</script>
 </body>

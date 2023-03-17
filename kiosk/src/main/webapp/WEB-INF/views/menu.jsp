@@ -15,62 +15,60 @@
 	}
 </style>
 <body>
-<h1>메뉴페이지</h1>
-<hr>
-
-<c:if test="${forhere != null }">
-<h3>매장에서 식사하기 선택하셨습니다</h3>
-</c:if>
-<c:if test="${togo != null }">
-<h3>포장해서 가져가기 선택하셨습니다</h3>
-</c:if>
-
-<hr>
-<table id="menu_tbl" border="1">
-	<thead id="menu_tbl_thead">
-		<tr>
-			<th>인기</th><th>라멘</th><th>토핑</th><th>사이드메뉴</th>
-		</tr>
-	</thead>
-</table>
-<table border="1">
-	<tbody id="menu_tbl_tbody">
-		<tr>
-			<td id="tr"></td>
-		</tr>
-	</tbody>
-</table>
-<hr>
-<table border="1" id="cart_tbl">
-	<tr>
-		<th>음식코드</th>
-		<th>담은 음식</th>
-		<th>수량</th>
-		<th>가격</th>
-	</tr>
-	<tbody id="cart_tbl_tbody">
-	</tbody>
-</table>
-<hr>
-<form action="/user/order" method="post">
-	<table border="1" id="order_tbl" style="display: block">
-		<thead>
+	<h1>메뉴페이지</h1>
+	<hr>
+	
+	<c:if test="${forhere != null }">
+	<h3>매장에서 식사하기 선택하셨습니다</h3>
+	</c:if>
+	<c:if test="${togo != null }">
+	<h3>포장해서 가져가기 선택하셨습니다</h3>
+	</c:if>
+	
+	<hr>
+	<table id="menu_tbl" border="1">
+		<thead id="menu_tbl_thead">
 			<tr>
-				<th>수량</th>
-				<th>총 가격</th>
+				<th>인기</th><th>라멘</th><th>토핑</th><th>사이드메뉴</th>
 			</tr>
 		</thead>
-		<tbody id="order_tbl_tbody">
+	</table>
+	<table border="1">
+		<tbody id="menu_tbl_tbody">
 			<tr>
-				<th><input type="text" name="totalCnt" id="totalCnt"></th>
-				<th><input type="text" name="totalPrice" id="totalPrice"></th>
+				<td id="tr"></td>
 			</tr>
 		</tbody>
-		<tr>
-			<th colspan="2"><input type="submit" value="주문하기"></th>
-		</tr>
 	</table>
-</form>
+	<hr>
+	<form action="/user/order" method="post">
+		<table border="1" id="cart_tbl">
+			<tr>
+				<th>음식코드</th>
+				<th>담은 음식</th>
+				<th>수량</th>
+				<th>가격</th>
+			</tr>
+			
+			<tbody id="cart_tbl_tbody">
+			</tbody>
+			
+			<tbody id="order_tbl_tbody">
+				<tr>
+					<th>수량</th>
+					<th>총 가격</th>
+				</tr>
+				
+			</tbody>
+			
+			<tr>
+				<th colspan="2"><input type="submit" id="order_btn" value="주문하기"></th>
+			</tr>
+		</table>
+	</form>
+	<hr>
+
+
 	<script>
 		//메뉴 페이지 로딩시 인기메뉴 출력
 		$(document).ready(function(){
@@ -173,7 +171,7 @@
 			
 			for(let i = 0; i < foodCodes.length; i++){
 				if(foodCode == foodCodes[i].value){
-					alert("이미 담은 음식입니다. \n 수량을 조절하시려면 아래 수량 칸을 조절해주세요.")					
+					alert("이미 담은 음식입니다. \n수량을 조절하시려면 아래 수량 칸을 조절해주세요.")					
 					return false;
 				}
 			}
@@ -184,29 +182,26 @@
 				$("#cart_tbl_tbody").append(
 						"<tr>"+
 							"<td>"+
-								"<input type='text' id='foodCode' value='"+food.foodCode+"'>"+
+								"<input type='text' id='foodCode' name='foodCode' value='"+food.foodCode+"'>"+
 							"</td>"+
 							"<td>"+
 								food.name+
 							"</td>"+
 							"<td id='cntBox'>"+
-								"<button id='minus'> - </button>"+
-								"<input type='number' id='cnt' value='1' readonly>"+
-								"<button id='plus'> + </button>"+
+								"<button type='button' id='minus'> - </button>"+
+								"<input type='number' id='cnt' name='totalCnt' value='1' readonly>"+
+								"<button type='button' id='plus'> + </button>"+
 							"</td>"+
 							"<td>"+
 								"<input type='hidden' id='realPrice' value='"+food.price+"'>"+
-								"<input type='text' id='price' value='"+food.price+"' readonly>"+
+								"<input type='text' id='price' name='totalPrice' value='"+food.price+"' readonly>"+
 							"</td>"+
 							"<td>"+
-								"<button id='del_cart'>삭제</button>"+
+								"<button type='button' id='del_cart'>삭제</button>"+
 							"</td>"+
 						"</tr>"
 						);
 				
-				
-				//담기 누를때마다 푸드코드 생성
-				$("#order_tbl_tbody").append("<input type='hidden' name='foodCode' value='"+food.foodCode+"'>");
 				getCnt();
 			}
 					
@@ -283,24 +278,10 @@
 			}
 		};
 		
-		/* $("#order_btn").on("click", function(){
-			let totalPrice = $("#totalPrice").val();
-			let totalCnt = $("#totalCnt").val();
-			let _foodCodes = document.querySelectorAll("#foodCode");
-			let foodCode = new Array();
-			for(let i = 0; i < _foodCodes.length; i++){
-				foodCode.push(_foodCodes[i].value)
-			}
-			alert(foodCode);
-			const xhttp = new XMLHttpRequest();
-			xhttp.onload = function() {
-				let result = this.responseText; 
-
-			}
-			xhttp.open("POST", "#");
-			xhttp.setRequestHeader("Content-type", "application/json");
-			xhttp.send("totalPrice="+totalPrice+"&totalCnt="+totalCnt);
-		}); */
+		//주문버튼
+		$("#order_btn").on("click", function(){
+			alert("hi");
+		})
 	</script>
 </body>
 </html>

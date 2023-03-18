@@ -10,13 +10,10 @@ public class MyController {
 	public void index() {
 		
 	}
-	
-	
-	
+
 	@GetMapping("/admin/adminPage")
 	public void adminPage() {
 		
 	}
-	
-	
+
 }

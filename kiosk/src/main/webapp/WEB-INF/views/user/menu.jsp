@@ -58,7 +58,10 @@
 					<th>수량</th>
 					<th>총 가격</th>
 				</tr>
-				
+				<tr>
+					<th><input type="text" id="totalCnt"></th>
+					<th><input type="text" id="totalPrice"></th>
+				</tr>
 			</tbody>
 			
 			<tr>
@@ -74,7 +77,7 @@
 		<input type="hidden" name="tableNum" id="tableNum">
 	</form>
 	<hr>
-
+	
 
 	<script>
 		$(document).ready(getTableNum)

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.kiosk.dto.FoodDTO;
+import com.springboot.kiosk.dto.OrderByTblNumDTO;
+import com.springboot.kiosk.dto.OrderDTO;
 import com.springboot.kiosk.service.IFoodService;
 import com.springboot.kiosk.service.IOrderService;
 
@@ -27,19 +29,21 @@ public class UserGetController {
 	@Autowired
 	FoodDTO fDto;
 	
+	@Autowired
+	OrderDTO oDto;
 	
 	@GetMapping("/menu/{food-orders}")
 	public ModelAndView menu(@PathVariable ("food-orders") String selected, Model model) {
 		if(selected.equals("forhere")) {
 			model.addAttribute("forhere", "forehere");
 			
-			ModelAndView menu = new ModelAndView("menu");
+			ModelAndView menu = new ModelAndView("/user/menu");
 			return menu;
 			
 		}else {
 			model.addAttribute("togo", "togo");
 			
-			ModelAndView menu = new ModelAndView("menu");
+			ModelAndView menu = new ModelAndView("/user/menu");
 			return menu;
 		}
 	}
@@ -75,5 +79,19 @@ public class UserGetController {
 		}
 		
 		return tableNums;
+	}
+	
+	//주문결제페이지
+	@GetMapping("/orderType")
+	public ModelAndView orderType() {
+		ModelAndView orderType = new ModelAndView("/user/orderType");
+		return orderType;
+	}
+	
+	//테이블번호로 주문내역 불러오기
+	@GetMapping("/orderlist/{tableNum}")
+	public List<OrderByTblNumDTO> getOrderListBytableNum(@PathVariable("tableNum") int tableNum){
+		List<OrderByTblNumDTO> orderLists = oService.getOrderListBytableNum(tableNum);
+		return orderLists;
 	}
 }

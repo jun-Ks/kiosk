@@ -16,4 +16,11 @@
 		FROM kiosk.order_tbl
 		GROUP BY tableNum
   	</select>
+  	
+  	<!-- 테이블넘버로 주문내역 조회하기 -->
+  	<select id='getOrderListBytableNum' resultType='OrderByTblNumDTO'>
+  		SELECT ot.orderCode, ot.tableNum, ot.totalPrice, ft.name
+		FROM kiosk.order_tbl ot, food_tbl ft
+		WHERE ot.tableNum = #{param1} and ot.foodCode = ft.foodCode 
+  	</select>
   </mapper>

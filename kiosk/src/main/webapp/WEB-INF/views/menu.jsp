@@ -41,7 +41,7 @@
 		</tbody>
 	</table>
 	<hr>
-	<form action="/user/order" method="post">
+	<form action="order" method="post">
 		<table border="1" id="cart_tbl">
 			<tr>
 				<th>음식코드</th>
@@ -65,11 +65,30 @@
 				<th colspan="2"><input type="submit" id="order_btn" value="주문하기"></th>
 			</tr>
 		</table>
+		<c:if test="${forhere != null }">
+			<input type="hidden" name="type" value="매장">		
+		</c:if>
+		<c:if test="${togo != null }">
+			<input type="hidden" name="type" value="포장">
+		</c:if>
+		<input type="hidden" name="tableNum" id="tableNum">
 	</form>
 	<hr>
 
 
 	<script>
+		$(document).ready(getTableNum)
+		function getTableNum(){
+			const xhttp = new XMLHttpRequest();
+			xhttp.onload = function() {
+				let result = this.responseText; 
+				$("#tableNum").val(result);
+			}
+					
+			xhttp.open("GET", "/user/table-nums", true); 
+				
+			xhttp.send();
+		}
 		//메뉴 페이지 로딩시 인기메뉴 출력
 		$(document).ready(function(){
 			const xhttp = new XMLHttpRequest();
@@ -278,10 +297,6 @@
 			}
 		};
 		
-		//주문버튼
-		$("#order_btn").on("click", function(){
-			alert("hi");
-		})
 	</script>
 </body>
 </html>

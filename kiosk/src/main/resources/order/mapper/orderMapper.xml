@@ -9,5 +9,11 @@
 		(foodCode, totalCnt, totalPrice, type, tableNum)
 		VALUES(#{foodCode}, #{totalCnt}, #{totalPrice}, #{type}, #{tableNum});
   	</insert>
-  
+  	
+  	<!-- 테이블넘버 조회하기 -->
+  	<select id='getTableNums' resultType='int'>
+  		SELECT tableNum
+		FROM kiosk.order_tbl
+		GROUP BY tableNum
+  	</select>
   </mapper>

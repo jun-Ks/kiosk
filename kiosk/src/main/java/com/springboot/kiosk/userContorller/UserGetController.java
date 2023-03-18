@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.kiosk.dto.FoodDTO;
 import com.springboot.kiosk.service.IFoodService;
+import com.springboot.kiosk.service.IOrderService;
 
 @RestController
 @RequestMapping("/user")
@@ -21,7 +22,11 @@ public class UserGetController {
 	IFoodService fService;
 	
 	@Autowired
+	IOrderService oService;
+	
+	@Autowired
 	FoodDTO fDto;
+	
 	
 	@GetMapping("/menu/{food-orders}")
 	public ModelAndView menu(@PathVariable ("food-orders") String selected, Model model) {
@@ -53,5 +58,22 @@ public class UserGetController {
 		FoodDTO food = fService.foodListByCode(foodCode);
 		
 		return food;
+	}
+	
+	//테이블 넘버가져와서 비교 후 리턴
+	@GetMapping("/table-nums")
+	public int makeTableNums() {
+		List<Integer> getTableNums = oService.getTableNums();
+		int tableNums = 0;
+		//0, 1
+		while(true)	{
+			if(tableNums == getTableNums.get(tableNums)){
+				tableNums++;
+			}else {
+				break;
+			}
+		}
+		
+		return tableNums;
 	}
 }

@@ -1,5 +1,7 @@
 package com.springboot.kiosk.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,12 @@ public class OrderService implements IOrderService{
 	public int order(OrderDTO order) {
 		int result = omapper.order(order);
 		return result;
+	}
+
+	@Override
+	public List<Integer> getTableNums() {
+		List<Integer> tableNums = omapper.getTableNums();
+		return tableNums;
 	}
 
 }

@@ -10,5 +10,6 @@ public class OrderByTblNumDTO {
 	private int orderCode;
 	private int tableNum;
 	private int totalPrice;
+	private String type;
 	private String name;
 }

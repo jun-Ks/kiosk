@@ -8,13 +8,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="/resources/css/menu.css">
 </head>
-<style>
-	#menu_tbl_thead{
-		cursor: pointer;
-	}
-</style>
+
 <body>
+	<header>
+		<jsp:include page="/WEB-INF/views/header.jsp"/>
+	</header>
+	
 	<h1>메뉴페이지</h1>
 	<hr>
 	

@@ -35,4 +35,10 @@ public class OrderService implements IOrderService{
 		return getOrderListBytableNum;
 	}
 
+	@Override
+	public int updateState(int tableNum) {
+		int result = omapper.updateState(tableNum);
+		return result;
+	}
+
 }

@@ -94,4 +94,6 @@ public class UserGetController {
 		List<OrderByTblNumDTO> orderLists = oService.getOrderListBytableNum(tableNum);
 		return orderLists;
 	}
+	
+	
 }

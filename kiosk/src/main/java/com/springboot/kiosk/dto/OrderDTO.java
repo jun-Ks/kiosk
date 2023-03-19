@@ -19,5 +19,6 @@ public class OrderDTO {
 	private int totalCnt;
 	private int totalPrice;
 	private String type;
+	private int state;
 	private Timestamp orderTime;
 }

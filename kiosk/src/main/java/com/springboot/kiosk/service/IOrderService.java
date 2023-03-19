@@ -14,4 +14,7 @@ public interface IOrderService {
 	
 	//테이블 넘버로 주문내역 가져오기
 	public List<OrderByTblNumDTO> getOrderListBytableNum(int tableNum);
+	
+	//카카오페이로 주문 성공 시 state변경
+	public int updateState(int tableNum);
 }

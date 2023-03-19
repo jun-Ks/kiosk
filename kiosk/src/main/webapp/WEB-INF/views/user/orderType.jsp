@@ -11,9 +11,6 @@
 </head>
 <body>
 <c:if test="${result == 1 }">
-<input type="hidden" id="tableNum" value="${tableNum }">
-<input type="hidden" id="totalPrice">
-<input type="hidden" id="foodNames">
 <table id="orderType_tbl">
 	<tr>
 		<th>카드결제</th>
@@ -22,11 +19,24 @@
 	</tr>
 </table>
 </c:if>
-
+<table id="modal_tbl" style="display: none">
+	<tr>
+		<th>주문번호</th>
+		<th>${tableNum }</th>
+	</tr>
+	<tr>
+		<th>주문</th>
+		<th id="orderType"></th>
+	</tr>
+</table>
 
 <script>
 getOrderList();
 function getOrderList(){
+
+}
+
+$("#kakao").on("click", function(){
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
 		let result = this.responseText; 
@@ -37,43 +47,56 @@ function getOrderList(){
 			totalPrice = parseInt(totalPrice) + parseInt(order[i].totalPrice);
 			foodNames.push(order[i].name);
 		}
-		$("#totalPrice").val(totalPrice);
-		$("#foodNames").val(foodNames);
+		$("#orderType").text(order[0].type);
+		
+		IMP.init('imp56271727');
+		
+		IMP.request_pay({
+		    pg : 'kakao', 
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '라멘야 : ' + foodNames,
+		    amount : totalPrice, //판매 가격
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        
+			    paySuccess();
+			    
+			    alert(msg);
+		        
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		        alert(msg);
+		    }
+		});
 	}
 			
-	xhttp.open("GET", "/user/orderlist/" + $("#tableNum").val(), true); 
+	xhttp.open("GET", "/user/orderlist/" + ${tableNum}, true); 
 		
 	xhttp.send();
-}
-
-$("#kakao").on("click", function(){
-	IMP.init('imp56271727');
 	
-	IMP.request_pay({
-	    pg : 'kakao', // version 1.1.0부터 지원.
-	    pay_method : 'card',
-	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '라멘야 : ' + $("#foodNames").val(),
-	    amount : $("#totalPrice").val(), //판매 가격
-	   /*  buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456' */
-	}, function(rsp) {
-	    if ( rsp.success ) {
-	        var msg = '결제가 완료되었습니다.';
-	       /*  msg += '고유ID : ' + rsp.imp_uid;
-	        msg += '상점 거래ID : ' + rsp.merchant_uid; */
-	        msg += '결제 금액 : ' + rsp.paid_amount;
-	        msg += '카드 승인번호 : ' + rsp.apply_num;
-	    } else {
-	        var msg = '결제에 실패하였습니다.';
-	        msg += '에러내용 : ' + rsp.error_msg;
-	    }
-	    alert(msg);
-	});
-})
+});
+
+//결제 성공시 state 1로 수정
+function paySuccess(){
+	
+ 	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function() { //이름이 없는 함수 = 익명함수
+		let result = this.responseText; 
+		
+		if(result != 0){
+			
+			$("#modal_tbl").css("display", "block");
+		}
+	}
+	
+	xhttp.open("PUT", "/user/state/" + ${tableNum}, true); 
+	
+	xhttp.send(); 
+}
 </script>
 
 </body>

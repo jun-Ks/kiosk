@@ -67,15 +67,92 @@ section{
 .order_section{
 	width: 800px;
 	height: 500px;
-	background-color: lightcoral;
+	/* background-color: lightcoral; */
 	margin-top: 96px;
+	display: none;
 }
 #cart_tbl{
-	width: 700px;
+	margin-top: 30px;
+	width: 800px;
 	text-align:center;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 30px;
+	background-color: white;
+	border-collapse: collapse;
+	font-size: 20px;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+#cart_tbl_tbody tr:nth-child(2n+1){
+	background-color: #ffb7c7;
+}
+#cart_tbl th{
+	height: 50px;
+	border-bottom: 1px solid black;
+}
+#cart_tbl td{
+	height: 50px;
+}
+
+#cart_food{
+	width: 300px;
+}
+#cart_cnt{
+	width: 150px;
+}
+#cart_price{
+	width: 270px;
+}
+#cart_del{
+	width: 80px;
+}
+#cart_tbl input[type="text"], #order_tbl input[type="text"]{
+	text-align: center;
+	background-color: transparent;
+	outline:none;
+	height: 30px;
+	border: none;
+	font-size: 20px;
+}
+#plus, #minus{
+	border:none;
+	background-color: transparent;
+	cursor: pointer;
+	font-size: 25px;
+}
+#del_cart{
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	font-size: 20px;
+}
+#order_tbl{
+	width: 400px;
+	margin-top: 10px;
+	font-size: 20px;
+	background-color: white;
+	float:right;
+	border-top: 2px solid black;
+	border-collapse: collapse;
+}
+#order_tbl_tbody tr:nth-child(1){
+	border-bottom: 1px solid black;
+}
+#order_tbl_tbody tr:last-child{
+	border-top: 2px solid black;
+}
+#order_tbl th{
+	height: 40px;
+}
+#order_btn{
+	height: 40px;
+	border: 1px solid black;
+	border-radius: 3px;
+	background-color: #C7221E;
+	cursor: pointer;
+	font-size: 18px;
+	color: white;
+	margin-top: 20px;
 }
 #cnt{
 	width: 40px;

@@ -39,7 +39,7 @@
 			</table>
 			<div class="menu_tbl_box">
 				<div id="background">
-					<table border="1" id="menu_tbl_2">
+					<table id="menu_tbl_2">
 						<tbody id="menu_tbl_tbody">
 							
 						</tbody>
@@ -50,30 +50,32 @@
 		</div>
 	<div class="order_section">
 		<form action="order" method="post">
-			<table id="cart_tbl" border="1">
+			<table id="cart_tbl">
 				<tr>
-					<th>담은 음식</th>
-					<th>수량</th>
-					<th>가격</th>
+					<th id="cart_food">담은 음식</th>
+					<th id="cart_cnt">수량</th>
+					<th id="cart_price">가격</th>
+					<th id="cart_del">삭제</th>
 				</tr>
 				
 				<tbody id="cart_tbl_tbody">
 				</tbody>
-				
+			</table>
+			<table id="order_tbl">
 				<tbody id="order_tbl_tbody">
 					<tr>
-						<th>수량</th>
-						<th>총 가격</th>
+						<th id="order_totalCnt">총 수량</th>
+						<th id="order_totalPrice">총 가격</th>
 					</tr>
 					<tr>
-						<th><input type="text" id="totalCnt"></th>
-						<th><input type="text" id="totalPrice"></th>
+						<th><input type="text" id="totalCnt" readonly></th>
+						<th><input type="text" id="totalPrice" readonly></th>
+					</tr>
+					<tr>
+						<th></th>
+						<th><input type="submit" id="order_btn" value="주문하기"></th>
 					</tr>
 				</tbody>
-				
-				<tr>
-					<th colspan="2"><input type="submit" id="order_btn" value="주문하기"></th>
-				</tr>
 			</table>
 			
 		<c:if test="${forhere != null }">

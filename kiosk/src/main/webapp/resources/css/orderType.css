@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+#orderType_tbl{
+	width: 500px;
+	height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 25px;
+	cursor: pointer;
+}
+#card{
+	border-right: 1px solid black;
+}
+#card_img, #kakao_img{
+	width: 400px;
+	height: 250px;
+}
+
+#kakao_img{
+	border-radius: 30px;
+}
+
+.modal_outer {
+	display:none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%; /*100%*/
+	width: 100%; /*100%*/
+	background-color: rgba(1,1,1,30%);
+}
+
+#modal_inner {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 500px;  
+	height: 500px;
+	border: 1px solid black;
+	background-color: white;
+}
+#modal_tbl{
+	margin: 20px auto;
+	width: 500px;
+}
+#index1{
+	
+	font-size: 50px;
+}
+#index2{
+	height: 100px;
+	font-size: 30px;
+}
+#index1{
+	border-bottom: 3px dashed black;
+}
+#tableNum{
+    font-size: 100px;
+    border-bottom: 3px dashed black;
+}
+#tableNum{
+    color:red;
+    height: 200px;
+}
+#alert{
+	height: 40px;
+}
+#countdown{
+	color: red;
+}

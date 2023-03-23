@@ -6,9 +6,7 @@ import lombok.Data;
 
 @Data
 @Component
-public class UserDTO {
-	private int userNum;
+public class AdminDTO {
 	private String id;
 	private String pw;
-	private String name;
 }

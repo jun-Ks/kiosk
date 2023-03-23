@@ -13,7 +13,7 @@
 <header>
 	<jsp:include page="/WEB-INF/views/header.jsp"/>
 </header>
-<table>
+<table id="orderType">
 	<tr>
 		<th>
 			<a href="/user/menu/food-orders=togo">
@@ -50,8 +50,29 @@
 	</tr>
 </table>
 
-<a href="admin/adminPage">관리자페이지</a>
-
+<div class="adminLogin">관리자페이지</div>
+<div class="modal_outer">
+	<div id="modal_inner">
+		<div id="close_box">
+			<button id="close_btn"> X </button>
+		</div>
+		<div id="modal_header">관리자 로그인</div>
+		<table id="login_tbl">
+			
+			<tr>
+				<th>아이디</th>
+				<th><input type="text" name="id" id="id"></th>
+			</tr>
+			<tr>
+				<th>패스워드</th>
+				<th><input type="password" name="pw" id="pw"></th>
+			</tr>
+			<tr>
+				<th colspan="2"><button id="login">로그인</button></th>
+			</tr>
+		</table>
+	</div>
+</div>
 <script src="/resources/js/index.js"></script>
 
 </body>

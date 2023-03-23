@@ -11,9 +11,6 @@ public class MyController {
 		
 	}
 
-	@GetMapping("/admin/adminPage")
-	public void adminPage() {
-		
-	}
+	
 
 }

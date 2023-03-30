@@ -1,14 +1,13 @@
 @charset "UTF-8";
 
-@font-face {
-    font-family: 'GongGothicMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * { 
+ font-family: 'Noto Sans KR', sans-serif;
 }
 
 *{
-	font-family: 'GongGothicMedium';
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 #ramenlogo{

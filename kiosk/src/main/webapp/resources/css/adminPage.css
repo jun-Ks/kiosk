@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+section{
+	display: flex;
+	border: 2px solid red;
+	width: 1800px;
+	margin: 0 auto;
+	text-align: center;
+}
+#registForm{
+	width: 800px;
+	height: 800px;
+	border: 1px solid black;
+	margin-left: 50px;
+}
+#regForm_tbl{
+	width: 400px;
+	height: 400px;
+	margin: 30px auto;
+}
+input[type="text"]{
+	outline: none;
+	width: 400px;
+	height: 20px;
+	padding: 5px;
+}

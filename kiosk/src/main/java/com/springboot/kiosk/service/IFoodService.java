@@ -13,4 +13,7 @@ public interface IFoodService {
 	
 	//코드로 음식조회
 	public FoodDTO foodListByCode(int foodCode);
+	
+	//모든 음식조회
+	public List<FoodDTO> foodSelectAll();
 }

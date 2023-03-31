@@ -39,4 +39,10 @@ public class FoodService implements IFoodService{
 		return food;
 	}
 
+	@Override
+	public List<FoodDTO> foodSelectAll() {
+		List<FoodDTO> foodListAll = fmapper.foodSelectAll();
+		return foodListAll;
+	}
+
 }

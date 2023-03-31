@@ -24,4 +24,11 @@
 		FROM kiosk.food_tbl
 		WHERE foodCode = #{param1};
 	</select>
+	
+	<!-- 모든 음식 조회 -->
+	<select id="foodSelectAll" resultType="FoodDTO">
+		SELECT *
+		FROM kiosk.food_tbl;
+	</select>
+	
 </mapper>

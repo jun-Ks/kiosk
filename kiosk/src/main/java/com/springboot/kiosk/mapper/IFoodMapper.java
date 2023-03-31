@@ -16,4 +16,7 @@ public interface IFoodMapper {
 	
 	//음식코드로 조회
 	public FoodDTO foodListByCode(int foodCode);
+	
+	//음식 모두 조회
+	public List<FoodDTO> foodSelectAll();
 }

@@ -25,9 +25,10 @@
 	    	<img src="/resources/imgs/kakao.png" id="kakao_img"><br>
 	    	카카오페이
     	</th>
-    	
 	</tr>
 </table>
+
+
 </c:if>
 <div class="modal_outer">
 	<div id="modal_inner">
@@ -51,42 +52,49 @@
 
 <script src="/resources/js/orderType.js"></script>
 <script>
-	$("#kakao").on("click", function(){
+
+	 $("#kakao").on("click", function(){
 		const xhttp = new XMLHttpRequest();
 		xhttp.onload = function() {
 			let result = this.responseText; 
 			let order = JSON.parse(result);
 			let totalPrice = 0;
 			let foodNames = new Array();
+			let foodCodes = new Array();
+			let totalCnts = new Array();
 			for(let i = 0; i < order.length; i++){
 				totalPrice = parseInt(totalPrice) + parseInt(order[i].totalPrice);
 				foodNames.push(order[i].name);
+				foodCodes.push(order[i].foodCode);
+				totalCnts.push(order[i].totalCnt);
 			}
+			
 			$("#orderType").text(order[0].type);
+			IMP.init("imp56271727");
 			
-			IMP.init('imp56271727');
-			
-			IMP.request_pay({
-			    pg : 'kakao', 
-			    pay_method : 'card',
-			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '라멘야 : ' + foodNames,
-			    amount : totalPrice, //판매 가격
-			}, function(rsp) {
-			    if ( rsp.success ) {
-			        var msg = '결제가 완료되었습니다.';
-			        msg += '결제 금액 : ' + rsp.paid_amount;
-			        
-				    paySuccess();
-				    
-				    alert(msg);
-			        
-			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
-			        alert(msg);
-			    }
-			});
+			    IMP.request_pay({
+			    	pg : "inicis", 
+			        pay_method : 'card',
+			        merchant_uid : 'merchant_' + new Date().getTime(),
+			        name : '우마이라멘 : ' + foodNames,
+			        amount : totalPrice
+			       
+			    }, function(rsp) {
+			        if ( rsp.success ) {
+			            var msg = '결제가 완료되었습니다.';
+			            alert(msg)
+			            
+			            paySuccess();
+			            for(let i = 0; i < foodCodes.length; i++){
+			            	updateInvenSales(foodCodes[i], totalCnts[i]);
+			            	
+			            }
+			        } else {
+			            var msg = '결제에 실패하였습니다.';
+			            rsp.error_msg;
+			            alert(msg)
+			        }
+			    });
 		}
 				
 		xhttp.open("GET", "/user/orderlist/" + ${tableNum}, true); 
@@ -94,7 +102,7 @@
 		xhttp.send();
 		
 	});
-	
+	 
 	//결제 성공시 state 1로 수정
 	function paySuccess(){
 		
@@ -110,6 +118,18 @@
 		}
 		
 		xhttp.open("PUT", "/user/state/" + ${tableNum}, true); 
+		
+		xhttp.send(); 
+	}
+	
+	function updateInvenSales(foodCodes, totalCnts){
+		const xhttp = new XMLHttpRequest();
+		xhttp.onload = function() { //이름이 없는 함수 = 익명함수
+			let result = this.responseText; 
+			
+		}
+		
+		xhttp.open("PUT", "/user/inven-sales/" + foodCodes + "/" + totalCnts, true); 
 		
 		xhttp.send(); 
 	}

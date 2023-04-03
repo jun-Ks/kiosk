@@ -8,7 +8,9 @@ import lombok.Data;
 @Component
 public class OrderByTblNumDTO {
 	private int orderCode;
+	private int foodCode;
 	private int tableNum;
+	private int totalCnt;
 	private int totalPrice;
 	private String type;
 	private String name;

@@ -41,4 +41,10 @@ public class OrderService implements IOrderService{
 		return result;
 	}
 
+	@Override
+	public int updateInvenSales(int foodCode, int sales) {
+		int result = omapper.updateInvenSales(foodCode, sales);
+		return result;
+	}
+
 }

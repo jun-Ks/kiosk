@@ -15,12 +15,21 @@ public class UserPutController {
 	@Autowired
 	OrderService oService;
 	
+	//결제완료시 state 변경	
 	@PutMapping("/state/{tableNum}")
 	public int updateState(@PathVariable int tableNum) {
 		
 		int result = oService.updateState(tableNum);
 		
 		
+		return result;
+	}
+	
+	//결제완료 시 재고, 판매량 수정
+	@PutMapping("/inven-sales/{foodCode}/{count}")
+	public int updateInvenSales(@PathVariable int foodCode, @PathVariable int count) {
+		
+		int result = oService.updateInvenSales(foodCode, count);
 		return result;
 	}
 }

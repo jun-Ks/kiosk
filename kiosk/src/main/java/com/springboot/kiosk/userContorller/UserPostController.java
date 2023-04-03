@@ -19,7 +19,7 @@ public class UserPostController {
 	@Autowired
 	IOrderService oService;
 
-	
+	//주문하기
 	@PostMapping("/menu/order")
 	public ModelAndView order(
 			int[] foodCode, 
@@ -29,11 +29,13 @@ public class UserPostController {
 			int tableNum
 			) {
 		OrderDTO order = null;
+		ArrayList<OrderDTO> orders = new ArrayList<>();
 		int result = 0;
 		ModelAndView orderType = new ModelAndView("/user/orderType");
 		for(int i = 0; i < foodCode.length; i++) {
 			
 			order = new OrderDTO();
+			
 			order.setFoodCode(foodCode[i]);
 			order.setTotalCnt(totalCnt[i]);
 			order.setTotalPrice(totalPrice[i]);
@@ -41,10 +43,13 @@ public class UserPostController {
 			order.setTableNum(tableNum);
 			
 			result = oService.order(order);
-
+			
+			orders.add(order);
 		}
 		orderType.addObject("result", result);
 		orderType.addObject("tableNum", tableNum);
+		orderType.addObject("orders", orders);
+		
 		return orderType;
 	}
 }

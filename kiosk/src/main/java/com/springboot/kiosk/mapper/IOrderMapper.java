@@ -20,4 +20,7 @@ public interface IOrderMapper {
 	
 	//카카오페이로 주문 성공시 state 변경
 	public int updateState(int tableNum);
+	
+	//결제완료 시, 음식 재고/판매량 수정
+	public int updateInvenSales(int foodCode, int sales);
 }

@@ -7,10 +7,11 @@ import lombok.Data;
 @Data
 @Component
 public class FoodDTO {
-	int foodCode;
-	String name;
-	int price;
-	String category;
-	String inventory;
-	String img;
+	private int foodCode;
+	private String name;
+	private int price;
+	private String category;
+	private int inventory;
+	private String img;
+	private int sales;
 }

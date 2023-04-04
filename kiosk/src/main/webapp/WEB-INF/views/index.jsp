@@ -51,7 +51,7 @@
 </table>
 
 <div class="adminLogin">관리자페이지</div>
-<div class="modal_outer">
+<div class="modal_outer" style="display:none">
 	<div id="modal_inner">
 		<div id="close_box">
 			<button id="close_btn"> X </button>

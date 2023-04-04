@@ -18,7 +18,7 @@
 		WHERE category = #{param1};
 	</select>
 	
-	<!-- 카테고리로 음식조회 -->
+	<!-- 코드로 음식조회 -->
 	<select id="foodListByCode" resultType="FoodDTO">
 		SELECT *
 		FROM kiosk.food_tbl
@@ -31,4 +31,16 @@
 		FROM kiosk.food_tbl;
 	</select>
 	
+	<!-- 코드로 음식삭제 -->
+	<delete id="deleteProduct">
+		DELETE FROM kiosk.food_tbl
+		WHERE foodCode=#{param1};
+	</delete>
+	
+	<!-- 제품 상세정보 수정 -->
+	<update id="updateProduct">
+		UPDATE kiosk.food_tbl
+		SET name=#{food.name}, price=#{food.price}, category=#{food.category}, inventory=#{food.inventory}
+		WHERE foodCode=#{param1};
+	</update>
 </mapper>

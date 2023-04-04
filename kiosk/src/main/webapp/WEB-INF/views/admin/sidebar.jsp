@@ -10,8 +10,8 @@
 <body>
 	<div id="sidebar">
 		<div class="menu">
-			<div><a href="products">제품등록</a></div>
-			<div><a href="products/list">제품조회</a></div>
+			<div><a href="/admin/products">제품등록</a></div>
+			<div><a href="/admin/products/list">제품조회</a></div>
 		</div>
 	</div>
 </body>

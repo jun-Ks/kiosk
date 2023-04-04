@@ -18,14 +18,16 @@
 		<h2>제품조회</h2>
 		<hr>
 		<div id="listView">
-			<table border="1">
+			<table id="foodList" border="1">
 				<thead>
 					<tr>
 						<th>코드</th>
-						<th>제품명</th>
 						<th>카테고리</th>
+						<th>이미지</th>
+						<th>제품명</th>
 						<th>가격</th>
 						<th>재고</th>
+						<th>판매량</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -16,4 +16,10 @@ public interface IFoodService {
 	
 	//모든 음식조회
 	public List<FoodDTO> foodSelectAll();
+	
+	//코드로 음식삭제
+	public int deleteProduct(int code);
+	
+	//음식정보수정
+	public int updateProduct(int code, FoodDTO food);
 }

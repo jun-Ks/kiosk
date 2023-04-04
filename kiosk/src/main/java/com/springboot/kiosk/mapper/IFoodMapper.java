@@ -3,6 +3,7 @@ package com.springboot.kiosk.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.springboot.kiosk.dto.FoodDTO;
 
@@ -19,4 +20,10 @@ public interface IFoodMapper {
 	
 	//음식 모두 조회
 	public List<FoodDTO> foodSelectAll();
+	
+	//코드로 음식삭제
+	public int deleteProduct(int code);
+	
+	//음식정보수정
+	public int updateProduct(int code, @Param("food") FoodDTO food);
 }

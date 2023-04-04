@@ -39,10 +39,26 @@ public class FoodService implements IFoodService{
 		return food;
 	}
 
+	//모든 음식 조회
 	@Override
 	public List<FoodDTO> foodSelectAll() {
 		List<FoodDTO> foodListAll = fmapper.foodSelectAll();
 		return foodListAll;
 	}
 
+	//코드로 음식삭제
+	@Override
+	public int deleteProduct(int code) {
+		int result = fmapper.deleteProduct(code);
+		return result;
+	}
+
+	@Override
+	public int updateProduct(int code, FoodDTO food) {
+		System.out.println(food.toString());
+		int result = fmapper.updateProduct(code, food);
+		return result;
+	}
+	
+	
 }

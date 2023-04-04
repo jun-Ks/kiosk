@@ -12,16 +12,24 @@ function getList() {
 						foods[i].foodCode+
 					"</td>"+
 					"<td>"+
-						"이미지"+
-					"</td>"+
-					"<td>"+
-						foods[i].name+
-					"</td>"+
-					"<td>"+
 						foods[i].category+
 					"</td>"+
 					"<td>"+
+						"이미지"+
+					"</td>"+
+					"<td id='foodName'>"+
+						"<a href='/admin/products/list/"+foods[i].foodCode+"'>"+
+						foods[i].name+
+						"</a>"+
+					"</td>"+
+					"<td>"+
+						foods[i].price+
+					"</td>"+
+					"<td>"+
 						foods[i].inventory+
+					"</td>"+
+					"<td>"+
+						foods[i].sales+
 					"</td>"
 			);
 		}
@@ -31,3 +39,4 @@ function getList() {
 		
 	xhttp.send();
 }
+

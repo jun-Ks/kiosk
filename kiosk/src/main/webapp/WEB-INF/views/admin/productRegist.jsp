@@ -16,7 +16,7 @@
 	<div id="registForm">
 		<h2>제품등록</h2>
 		<hr>
-		<form action="/admin/food" class="regist" method="post">
+		<form action="/admin/food" class="regist" method="post" enctype="multipart/form-data">
 			<table id="regForm_tbl">
 				<tr>
 					<th>제품명</th>
@@ -36,7 +36,7 @@
 				</tr>
 				<tr>
 					<th>이미지</th>
-					<td><input type="file" name="productImg"></td>
+					<td><input type="file" name="img"></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="등록하기">

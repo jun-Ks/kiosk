@@ -9,7 +9,7 @@ h3{
 }
 
 #menu_tbl{
-	width: 860px;
+	width: 800px;
 	height: 100px;
 	
 }
@@ -19,7 +19,7 @@ h3{
 	cursor: pointer;
 }
 .menu_tbl_box{
-	width: 856px;
+	width: 800px;
 	height: 700px;
 	background-color: #C7221E;
 	margin-top: -5px;
@@ -61,9 +61,7 @@ section{
 	display:flex;
 	border: 3px solid black;
 }
-.menu_section{
-	margin-left: 150px;
-}
+
 .order_section{
 	width: 800px;
 	height: 500px;
@@ -73,7 +71,7 @@ section{
 }
 #cart_tbl{
 	margin-top: 30px;
-	width: 800px;
+	width: 550px;
 	text-align:center;
 	margin-left: auto;
 	margin-right: auto;
@@ -127,11 +125,12 @@ section{
 	font-size: 20px;
 }
 #order_tbl{
-	width: 400px;
+	width: 300px;
 	margin-top: 10px;
 	font-size: 20px;
 	background-color: white;
 	float:right;
+	margin-right:30px;
 	border-top: 2px solid black;
 	border-collapse: collapse;
 }

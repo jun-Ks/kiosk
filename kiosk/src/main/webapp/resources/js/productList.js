@@ -15,7 +15,7 @@ function getList() {
 						foods[i].category+
 					"</td>"+
 					"<td>"+
-						"이미지"+
+						"<img src='/resources/productImg/"+foods[i].img+"' width='100px'>"+
 					"</td>"+
 					"<td id='foodName'>"+
 						"<a href='/admin/products/list/"+foods[i].foodCode+"'>"+

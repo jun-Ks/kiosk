@@ -18,7 +18,7 @@
 		<h2>제품조회</h2>
 		<hr>
 		<div id="listView">
-			<table id="foodList" border="1">
+			<table id="foodList">
 				<thead>
 					<tr>
 						<th>코드</th>

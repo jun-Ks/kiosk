@@ -17,3 +17,15 @@ h2{
 	border: 1px solid black;
 	margin-left: 50px;
 }
+#foodList{
+	width: 650px;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+#foodList th, #foodList td{
+	height: 40px;
+	border-bottom: 1px solid black;
+}
+#foodList th{
+	background-color: lightgray;
+}

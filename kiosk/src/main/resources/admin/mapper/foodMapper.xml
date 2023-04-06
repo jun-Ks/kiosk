@@ -8,7 +8,7 @@
 	<insert id="insertFood">
 		INSERT INTO kiosk.food_tbl
 		(name, price, category, inventory, img)
-		VALUES (#{name}, #{price}, #{category}, #{inventory}, NULL);
+		VALUES (#{name}, #{price}, #{category}, #{inventory}, #{img});
 	</insert>
 	
 	<!-- 카테고리로 음식조회 -->

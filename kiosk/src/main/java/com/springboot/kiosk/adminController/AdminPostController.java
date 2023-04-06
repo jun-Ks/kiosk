@@ -36,11 +36,10 @@ public class AdminPostController {
 	
 	@PostMapping("/food")
 	public int insertFood(FoodDTO food, 
-			@RequestParam("img") MultipartFile file,
+			@RequestParam("productImg") MultipartFile file,
 			MultipartHttpServletRequest request
 			) {
 		String fileName = file.getOriginalFilename();
-		food.setImg(fileName);
 		
 		ServletContext ctx = request.getServletContext();
 		String uploadPath = "resources/productImg";
@@ -52,6 +51,7 @@ public class AdminPostController {
 			e.printStackTrace();
 		}
 		
+		food.setImg(fileName);
 		int result = fService.insertFood(food);
 		
 		return result;

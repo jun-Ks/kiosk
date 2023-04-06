@@ -45,7 +45,7 @@ $("#login").on("click", function(){
 	xhttp.onload = function() {
 		let result = this.responseText; 
 		if(result == 1){
-			location.href = "/admin/"
+			location.href = "/admin/products"
 		}else{
 			alert("로그인 실패.. \n 아이디, 비밀번호를 다시 확인해주세요!")
 		}

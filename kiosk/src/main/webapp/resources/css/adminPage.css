@@ -64,3 +64,8 @@ input[type="submit"]{
 	margin-top: 30px;
 	margin-right: 25px;
 }
+#preview_img img{
+	margin-top: 50px;
+	width: 300px;
+	height: 300px;
+}

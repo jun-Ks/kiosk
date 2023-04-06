@@ -36,11 +36,12 @@
 				</tr>
 				<tr>
 					<th>이미지</th>
-					<td><input type="file" name="img"></td>
+					<td><input type="file" name="productImg" id="productImg" accept="image/*" onchange="setThumbnail(event)"></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="등록하기">
 				</tr>
+				
 			</table>
 			<div id="preview_img">
 				미리보기
@@ -48,5 +49,16 @@
 		</form>
 	</div>
 </section>
+<script>
+function setThumbnail(event) {
+    let reader = new FileReader();
+    reader.onload = function(event) {
+        let img = document.createElement("img");
+        img.setAttribute("src", event.target.result);
+        $("#preview_img").html(img)
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
 </body>
 </html>

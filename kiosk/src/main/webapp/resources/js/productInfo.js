@@ -14,6 +14,16 @@ $("#del_btn").on("click", function(){
 	xhttp.send();
 });
 
+function setThumbnail(event) {
+    let reader = new FileReader();
+    reader.onload = function(event) {
+        let img = document.createElement("img");
+        img.setAttribute("src", event.target.result);
+        $("#preview_img").html(img)
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
 $("#submit").on("click", function(){
 	let uCode = $("#foodCode").val();
 	let uName = $("#name").val();

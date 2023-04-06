@@ -2,7 +2,7 @@
 
 section{
 	display: flex;
-	border: 2px solid red;
+	/* border: 2px solid red; */
 	width: 1000px;
 	margin: 0 auto;
 	text-align: center;
@@ -38,7 +38,7 @@ h2{
 }
 #updateForm_tbl th{
 	width: 100px;
-	height: 80px;
+	height: 70px;
 	text-align: right;
 	font-weight: normal;
 	font-size: 15px;
@@ -54,7 +54,7 @@ input[type="text"]{
 	border: none;
 	border-bottom: 1px solid black;
 }
-input[type="submit"], #del_btn{
+button{
 	height: 40px;
 	border: none;
 	cursor: pointer;
@@ -73,4 +73,12 @@ input[type="submit"], #del_btn{
 	border-radius: 8px;
 	margin-top: 30px;
 	margin-right: 25px;
+}
+#preview_img img{
+	margin-top: 50px;
+	width: 300px;
+	height: 300px;
+}
+#foodCode, #sales{
+	background-color: lightgray;
 }

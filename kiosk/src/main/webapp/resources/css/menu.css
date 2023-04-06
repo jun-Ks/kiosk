@@ -59,7 +59,6 @@ h3{
 }
 section{
 	display:flex;
-	border: 3px solid black;
 }
 
 .order_section{

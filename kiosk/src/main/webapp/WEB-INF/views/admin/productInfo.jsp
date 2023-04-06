@@ -46,7 +46,7 @@
 				</tr>
 				<tr>
 					<th>이미지</th>
-					<td><input type="file" name="productImg" id="productImg"></td>
+					<td><input type="file" name="productImg" id="productImg" accept="image/*" onchange="setThumbnail(event)"></td>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -56,7 +56,7 @@
 				</tr>
 			</table>
 			<div id="preview_img">
-				미리보기
+				<img src="/resources/productImg/${food.img }">
 			</div>
 		</div>
 		</div>

@@ -15,7 +15,7 @@ function getList() {
 						foods[i].category+
 					"</td>"+
 					"<td>"+
-						"<img src='/resources/productImg/"+foods[i].img+"' width='100px'>"+
+						"<img src='/resources/productImg/"+foods[i].img+"' id='productImg'>"+
 					"</td>"+
 					"<td id='foodName'>"+
 						"<a href='/admin/products/list/"+foods[i].foodCode+"'>"+
@@ -39,4 +39,5 @@ function getList() {
 		
 	xhttp.send();
 }
+
 

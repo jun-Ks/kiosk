@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.kiosk.dto.AdminDTO;
 import com.springboot.kiosk.dto.FoodDTO;
@@ -35,9 +37,10 @@ public class AdminPostController {
 	FoodDTO food;
 	
 	@PostMapping("/food")
-	public int insertFood(FoodDTO food, 
+	public ModelAndView insertFood(FoodDTO food, 
 			@RequestParam("productImg") MultipartFile file,
-			MultipartHttpServletRequest request
+			MultipartHttpServletRequest request,
+			Model model
 			) {
 		String fileName = file.getOriginalFilename();
 		
@@ -53,8 +56,19 @@ public class AdminPostController {
 		
 		food.setImg(fileName);
 		int result = fService.insertFood(food);
-		
-		return result;
+		if(result == 1) {
+			String msg = "등록성공!";
+			model.addAttribute("msg", msg);
+			ModelAndView productList = new ModelAndView("/admin/productList");
+			
+			return productList;
+		}else {
+			String msg = "등록실패....";
+			model.addAttribute("등록실패....", "msg");
+			ModelAndView productRegist = new ModelAndView("/admin/productRegist");
+			
+			return productRegist;
+		}
 	}
 	
 	@PostMapping("/login")

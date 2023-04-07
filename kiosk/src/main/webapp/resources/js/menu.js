@@ -27,7 +27,7 @@ function getTableNum(){
 		    }
 		    $("#menu_tbl_tbody").append(
 		        "<td>" +
-		            "<img src='/resources/imgs/ramen.png' style='width:200px'>" +
+		            "<img src='/resources/productImg/"+foods[i].img+"' id='productImg'>" +
 		            "<br>" +
 		            foods[i].name+
 		            "<hr>"+
@@ -46,7 +46,6 @@ function getTableNum(){
 //카테고리 클릭 시, 메뉴 출력
 $("#menu_tbl").on("click", "#menu_tbl_thead", function(e){
 	let category = $(e.target).text();
-		
 		const xhttp = new XMLHttpRequest();
 		xhttp.onload = function() {
 			
@@ -60,7 +59,7 @@ $("#menu_tbl").on("click", "#menu_tbl_thead", function(e){
 			    }
 			    $("#menu_tbl_tbody").append(
 			        "<td>" +
-			            "<img src='/resources/imgs/ramen.png' style='width:200px'>" +
+			            "<img src='/resources/productImg/"+foods[i].img+"' id='productImg'>" +
 			            "<br>" +
 			            foods[i].name+
 			            "<hr>"+
@@ -198,14 +197,14 @@ function getCnt(){
 $(document).ready(function(){
 	$(".menu_index").first().css({
 		"background-color" : "#C7221E", 
-		"color" : "white",
-		});
+		"color" : "white"
+	});
 });
 
 //클릭하지 않은 카테고리 white
 $(".menu_index").on("click", function(){
 	$(this).css({"background-color" : "#C7221E", "color" : "white"});
-	$(".menu_index").not(this).css({"background-color" : "white", "color" : "black"})
+	$(".menu_index").not(this).css({"background-color" : "white", "color" : "black"});
 });
 
 $("#order_btn").on("click", function(){

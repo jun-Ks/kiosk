@@ -27,7 +27,7 @@ public class AdminPutContorller {
 	
 	//제품수정
 	@PutMapping("/products/list/u/{code}")
-	public int productUpdate(@PathVariable int code, 
+	public String productUpdate(@PathVariable int code, 
 			@RequestBody FoodDTO food, 
 			@RequestParam("productImg") MultipartFile file,
 			MultipartHttpServletRequest request
@@ -46,7 +46,12 @@ public class AdminPutContorller {
 		
 		food.setImg(fileName);
 		int result = fService.updateProduct(code, food);
-		
-		return result;
+		if(result == 1) {
+			String result_msg = "수정완료!";
+			return result_msg;
+		}else {
+			String result_msg = "수정실패....";
+			return result_msg;
+		}
 	}
 }

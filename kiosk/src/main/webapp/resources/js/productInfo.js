@@ -46,7 +46,7 @@ $("#submit").on("click", function(){
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
 		let result = this.responseText;
-		alert(result)
+		alert(result);
 	}
 	xhttp.open("PUT", "/admin/products/list/u/" + uCode, true);
 	xhttp.setRequestHeader("Content-type", "application/json");
